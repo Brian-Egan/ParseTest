@@ -16,7 +16,7 @@ class User
   end
 
 
-  def sign_out
+  def self.sign_out
     # Shouldn't have to use this much
     PFUser.logOut
   end

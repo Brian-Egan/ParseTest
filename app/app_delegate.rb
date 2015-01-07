@@ -11,12 +11,13 @@ class AppDelegate < PM::Delegate
 
 
   def on_load(app, options)
-    Parse.setApplicationId("QIUYd5UnX2KdkWN67LPsLcBAWcKu9lBfyUqu878I", clientKey:"MGDibkkbYALd1CYXIubkZCeSp5KLCFjzswBeEAmI")
+    Parse.setApplicationId(MY_ENV["parse_application_id"], clientKey:MY_ENV["parse_client_key"])
     return true if RUBYMOTION_ENV == "test"
-    # display_login unless PFUser.currentUser
-    # open HomeScreen.new(nav_bar: true) if PFUser.currentUser
-
-    open HomeScreen.new(nav_bar: true)
+    open PFUser.currentUser ? HomeScreen.new(nav_bar: true): StartScreen.new(nav_bar: true)
+    # open  unless
+    # open HomeScreen.new(nav_bar: true)
+    # # open HomeScreen.new(nav_bar: true) if PFUser.currentUser
+    # open
     # @logInViewController = PFLogInViewController.alloc.init
     # @logInViewController.delegate = self
     # @logInViewController.signUpController.delegate = self
@@ -32,6 +33,8 @@ class AppDelegate < PM::Delegate
     MY_ENV.extract!(environment)
     return MY_ENV
   end
+
+
 
 
 
@@ -57,11 +60,23 @@ class AppDelegate < PM::Delegate
 # }
 
   # def display_login
-  #   @login = PFLogInViewController.alloc.init
-  #   @login.fields = PFLogInFieldsUsernameAndPassword | PFLogInFieldsLogInButton | PFLogInFieldsSignUpButton
+  #   @login = CustomLoginViewController.alloc.init
+  #   @login.signUpController = CustomSignUpViewController.alloc.init
+  #   # @login.fields = PFLogInFieldsUsernameAndPassword | PFLogInFieldsLogInButton | PFLogInFieldsSignUpButton
   #   @login.delegate = self
   #   @login.signUpController.delegate = self
   #   self.presentModalViewController(@login, animated:true)
+  # end
+
+  # def logInViewController(logIn, didLogInUser:user)
+  #   PM.logger.debug "Successful log in!"
+  #   ap user
+  #   logIn.dismissModalViewControllerAnimated(true)
+  # end
+
+  # def logInViewControllerDidCancelLogIn(logIn)
+  #   PM.logger.debug "Login canceled!"
+  #   logIn.dismissModalViewControllerAnimated(true)
   # end
 
   # def logInViewController(logIn, didLogInUser:user)

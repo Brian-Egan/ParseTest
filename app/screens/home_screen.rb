@@ -19,8 +19,8 @@ class HomeScreen < PM::Screen
 
   def display_login
     # @login = PFLogInViewController.alloc.init
-    @login =  TpLoginViewController.alloc.init
-    @login.signUpController = TpSignUpViewController.alloc.init
+    @login =  CustomLoginViewController.alloc.init
+    @login.signUpController = CustomSignUpViewController.alloc.init
     # @login.fields = PFLogInFieldsUsernameAndPassword | PFLogInFieldsLogInButton | PFLogInFieldsSignUpButton
     @login.delegate = self
     @login.signUpController.delegate = self
