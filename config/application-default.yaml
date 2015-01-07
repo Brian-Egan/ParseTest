@@ -1,0 +1,17 @@
+# VARIABLES
+# A method is called in the app_delegate which extracts the non-relevant environment vars from the resulting hash
+
+username: ""
+password: ""
+email: ""
+email_domain: ""
+font: ""
+font_medium: ""
+font_light: ""
+font_thin: ""
+font_ultralight: ""
+font_bold: ""
+development:
+    api_server: ""
+production:
+    api_server: ""
